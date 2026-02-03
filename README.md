@@ -1,73 +1,84 @@
-# Welcome to your Lovable project
+# Μουσική Γωνιά - Greek Taverna Website
 
-## Project info
+A beautiful, modern website for the traditional Greek taverna "Μουσική Γωνιά" featuring online booking, menu, live music events, and Google Reviews integration.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
 
-## How can I edit this code?
+- 🏠 **Hero Section** - Stunning taverna imagery with key info
+- 📅 **Online Booking** - Real-time availability via Google Sheets
+- 🍽️ **Interactive Menu** - Tabbed menu with all categories
+- 🎵 **Live Music Events** - Upcoming performances
+- 📸 **Photo Gallery** - Lightbox gallery with food & ambiance photos
+- ⭐ **Google Reviews** - Dynamic reviews from Google Places API
+- 📍 **Location & Hours** - Google Maps integration
+- 📱 **Fully Responsive** - Mobile-first design
+- 🌍 **All Greek** - Native Greek content
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Frontend**: React + Vite + TypeScript + Tailwind CSS + shadcn/ui
+- **Backend**: Vercel Serverless Functions
+- **Database**: Google Sheets (for bookings)
+- **APIs**: Google Places (for reviews)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Quick Start
 
-Changes made via Lovable will be committed automatically to this repo.
+### 1. Clone and Install
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+git clone <repository-url>
+cd mousiki-gonia
+npm install
 ```
 
-**Edit a file directly in GitHub**
+### 2. Environment Setup
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Copy the example environment file and fill in your credentials:
 
-**Use GitHub Codespaces**
+```bash
+cp .env.example .env
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### 3. Google Cloud Setup
 
-## What technologies are used for this project?
+#### Google Sheets (Booking System)
 
-This project is built with:
+1. Go to [Google Cloud Console](https://console.cloud.google.com)
+2. Create a new project or select existing
+3. Enable the **Google Sheets API**
+4. Go to **IAM & Admin > Service Accounts**
+5. Create a new service account and download the JSON key
+6. Create a Google Sheet with columns: Date | Time | PartySize | Name | Phone | Email | Notes | MusicTable | CreatedAt
+7. Share the sheet with your service account email (Editor access)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+#### Google Places API (Reviews)
 
-## How can I deploy this project?
+1. Enable the **Places API** in Google Cloud Console
+2. Create an API key with Places API restriction
+3. Find your Place ID using [Place ID Finder](https://developers.google.com/maps/documentation/places/web-service/place-id)
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### 4. Deploy to Vercel
 
-## Can I connect a custom domain to my Lovable project?
+```bash
+vercel
+```
 
-Yes, you can!
+Add these environment variables in Vercel:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+| Variable | Description |
+|----------|-------------|
+| `GOOGLE_SHEETS_ID` | Your Google Sheet ID |
+| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | Service account email |
+| `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` | Private key |
+| `GOOGLE_PLACES_API_KEY` | Your Places API key |
+| `GOOGLE_PLACE_ID` | Your business Place ID |
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## API Routes
+
+- `GET /api/availability?date=YYYY-MM-DD` - Check available time slots
+- `POST /api/booking` - Create a new reservation
+- `GET /api/reviews` - Fetch Google Reviews (24h cache)
+
+## License
+
+© 2026 Μουσική Γωνιά. All rights reserved.
