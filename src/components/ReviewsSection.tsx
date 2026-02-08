@@ -1,5 +1,6 @@
 import { Star, ExternalLink } from 'lucide-react';
 import { mockReviews, overallRating, totalReviews } from '@/lib/reviewsData';
+import { siteConfig } from '@/config/site.config';
 
 const ReviewsSection = () => {
   const renderStars = (rating: number) => {
@@ -51,7 +52,7 @@ const ReviewsSection = () => {
         {/* Google Link */}
         <div className="text-center">
           <a
-            href="https://www.google.com/maps/place/..."
+            href={siteConfig.socialLinks.googleReviews}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"

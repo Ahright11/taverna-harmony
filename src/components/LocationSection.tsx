@@ -1,4 +1,5 @@
 import { MapPin, Clock, Car } from 'lucide-react';
+import { siteConfig } from '@/config/site.config';
 
 const LocationSection = () => {
   return (
@@ -13,7 +14,7 @@ const LocationSection = () => {
           {/* Map */}
           <div className="aspect-video lg:aspect-auto lg:h-[400px] rounded-xl overflow-hidden shadow-taverna-card">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.8!2d23.7!3d37.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM3Kw!5e0!3m2!1sen!2sgr!4v1000000000000!5m2!1sen!2sgr"
+              src={siteConfig.mapsEmbedUrl}
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -34,10 +35,10 @@ const LocationSection = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Διεύθυνση</h3>
-                  <p className="text-muted-foreground">Αβέρωφ 22</p>
-                  <p className="text-muted-foreground">Αγία Βαρβάρα 123 51</p>
+                  <p className="text-muted-foreground">{siteConfig.address.street}</p>
+                  <p className="text-muted-foreground">{siteConfig.address.city} {siteConfig.address.postalCode}</p>
                   <a
-                    href="https://www.google.com/maps/dir/..."
+                    href={siteConfig.mapsDirectionsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-primary/80 text-sm font-medium mt-2 inline-block"
@@ -57,18 +58,12 @@ const LocationSection = () => {
                 <div>
                   <h3 className="font-semibold text-foreground mb-2">Ωράριο</h3>
                   <div className="space-y-1 text-sm">
-                    <div className="flex justify-between gap-8">
-                      <span className="text-muted-foreground">Δευτέρα - Πέμπτη</span>
-                      <span className="text-foreground font-medium">12:00 - 23:00</span>
-                    </div>
-                    <div className="flex justify-between gap-8">
-                      <span className="text-muted-foreground">Παρασκευή - Σάββατο</span>
-                      <span className="text-foreground font-medium">12:00 - 01:00</span>
-                    </div>
-                    <div className="flex justify-between gap-8">
-                      <span className="text-muted-foreground">Κυριακή</span>
-                      <span className="text-foreground font-medium">12:00 - 23:00</span>
-                    </div>
+                    {siteConfig.hours.map(h => (
+                      <div key={h.day} className="flex justify-between gap-8">
+                        <span className="text-muted-foreground">{h.day}</span>
+                        <span className="text-foreground font-medium">{h.time}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -83,7 +78,7 @@ const LocationSection = () => {
                 <div>
                   <h3 className="font-semibold text-foreground">Δωρεάν Πάρκινγκ</h3>
                   <p className="text-muted-foreground text-sm">
-                    Διαθέσιμος χώρος στάθμευσης δίπλα στο εστιατόριο
+                    {siteConfig.parking}
                   </p>
                 </div>
               </div>

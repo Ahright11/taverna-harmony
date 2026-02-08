@@ -1,8 +1,9 @@
 import { Phone, MessageCircle, Instagram, Facebook, UtensilsCrossed } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { siteConfig } from '@/config/site.config';
 
 const ContactSection = () => {
-  const whatsappMessage = encodeURIComponent('Γεια σας, θα ήθελα πληροφορίες για κράτηση στη Μουσική Γωνιά.');
+  const whatsappMessage = encodeURIComponent(siteConfig.whatsappMessage);
 
   return (
     <section id="contact" className="taverna-section bg-cream-dark">
@@ -16,20 +17,20 @@ const ContactSection = () => {
           {/* Main Contact Options */}
           <div className="grid sm:grid-cols-2 gap-4 mb-10">
             {/* Phone */}
-            <a href="tel:+302105690444">
+            <a href={`tel:${siteConfig.phone}`}>
               <div className="taverna-card p-6 text-center hover:shadow-taverna-elevated transition-shadow group">
                 <div className="w-16 h-16 rounded-full bg-primary mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Phone className="h-8 w-8 text-primary-foreground" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-1">Καλέστε μας</h3>
-                <p className="text-xl font-medium text-primary">21 0569 0444</p>
+                <p className="text-xl font-medium text-primary">{siteConfig.phoneDisplay}</p>
                 <p className="text-sm text-muted-foreground mt-1">Κάθε μέρα 12:00 - 23:00</p>
               </div>
             </a>
 
             {/* WhatsApp */}
             <a
-              href={`https://wa.me/302105690444?text=${whatsappMessage}`}
+              href={`https://wa.me/${siteConfig.whatsapp}?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -49,7 +50,7 @@ const ContactSection = () => {
             <p className="text-muted-foreground mb-4">Ακολουθήστε μας</p>
             <div className="flex items-center justify-center gap-4">
               <a
-                href="https://instagram.com/mousikigonia"
+                href={siteConfig.socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -58,7 +59,7 @@ const ContactSection = () => {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="https://facebook.com/mousikigonia"
+                href={siteConfig.socialLinks.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -67,7 +68,7 @@ const ContactSection = () => {
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="https://tripadvisor.com/..."
+                href={siteConfig.socialLinks.tripadvisor}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"

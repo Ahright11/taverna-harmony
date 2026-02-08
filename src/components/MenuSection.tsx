@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Sparkles } from 'lucide-react';
 import { menuData, type MenuCategory } from '@/lib/menuData';
 import { cn } from '@/lib/utils';
+import { siteConfig } from '@/config/site.config';
 
 const MenuSection = () => {
   const [activeCategory, setActiveCategory] = useState<string>(menuData[0].id);
@@ -25,12 +26,12 @@ const MenuSection = () => {
             </span>
           </div>
           <h3 className="text-xl font-serif font-semibold text-foreground mb-1">
-            Αρνί λαδόκολλα
+            {siteConfig.specialDish.name}
           </h3>
           <p className="text-muted-foreground text-sm mb-2">
-            Αργά ψημένο με πατάτες στη λαδόκολλα
+            {siteConfig.specialDish.description}
           </p>
-          <span className="text-lg font-semibold text-secondary">€14.50</span>
+          <span className="text-lg font-semibold text-secondary">&euro;{siteConfig.specialDish.price.toFixed(2)}</span>
         </div>
 
         {/* Category Tabs */}
@@ -60,8 +61,8 @@ const MenuSection = () => {
                   key={index}
                   className={cn(
                     'flex items-start justify-between p-4 rounded-lg transition-colors',
-                    item.isSpecial 
-                      ? 'bg-secondary/10 border border-secondary/30' 
+                    item.isSpecial
+                      ? 'bg-secondary/10 border border-secondary/30'
                       : 'hover:bg-muted/50'
                   )}
                 >
@@ -82,7 +83,7 @@ const MenuSection = () => {
                     'font-semibold ml-4',
                     item.isSpecial ? 'text-secondary' : 'text-foreground'
                   )}>
-                    €{item.price.toFixed(2)}
+                    &euro;{item.price.toFixed(2)}
                   </span>
                 </div>
               ))}

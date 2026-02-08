@@ -1,3 +1,5 @@
+import { siteConfig } from '@/config/site.config';
+
 export interface MusicEvent {
   id: string;
   date: string;
@@ -7,29 +9,11 @@ export interface MusicEvent {
   time: string;
 }
 
-export const upcomingEvents: MusicEvent[] = [
-  {
-    id: '1',
-    date: '7 Φεβρουαρίου',
-    dayName: 'Παρασκευή',
-    artist: 'Νίκος Παπαδόπουλος',
-    style: 'Ρεμπέτικα & Λαϊκά',
-    time: '21:00',
-  },
-  {
-    id: '2',
-    date: '8 Φεβρουαρίου',
-    dayName: 'Σάββατο',
-    artist: 'Μαρία Καραγιάννη',
-    style: 'Νησιώτικα & Δημοτικά',
-    time: '21:30',
-  },
-  {
-    id: '3',
-    date: '14 Φεβρουαρίου',
-    dayName: 'Παρασκευή',
-    artist: 'Γιώργος Μπουζούκης',
-    style: 'Ζεϊμπέκικα & Χασάπικα',
-    time: '21:00',
-  },
-];
+export const upcomingEvents: MusicEvent[] = siteConfig.events.map((e, i) => ({
+  id: String(i + 1),
+  date: e.date,
+  dayName: e.day,
+  artist: e.artist,
+  style: e.style,
+  time: e.time,
+}));

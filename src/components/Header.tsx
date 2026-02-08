@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { siteConfig } from '@/config/site.config';
 
 const navLinks = [
   { href: '#home', label: 'Αρχική' },
@@ -27,13 +28,13 @@ const Header = () => {
       <div className="taverna-container">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a 
-            href="#home" 
+          <a
+            href="#home"
             onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }}
             className="flex items-center gap-2"
           >
             <span className="text-xl md:text-2xl font-serif font-bold text-primary">
-              Μουσική Γωνιά
+              {siteConfig.businessName}
             </span>
           </a>
 
@@ -53,13 +54,13 @@ const Header = () => {
 
           {/* Call Button & Mobile Menu */}
           <div className="flex items-center gap-3">
-            <a href="tel:+302105690444" className="hidden sm:flex">
+            <a href={`tel:${siteConfig.phone}`} className="hidden sm:flex">
               <Button variant="outline" size="sm" className="gap-2">
                 <Phone className="h-4 w-4" />
-                <span className="hidden md:inline">21 0569 0444</span>
+                <span className="hidden md:inline">{siteConfig.phoneDisplay}</span>
               </Button>
             </a>
-            
+
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="lg:hidden p-2 text-foreground"
@@ -84,7 +85,7 @@ const Header = () => {
                   {link.label}
                 </a>
               ))}
-              <a href="tel:+302105690444" className="sm:hidden">
+              <a href={`tel:${siteConfig.phone}`} className="sm:hidden">
                 <Button variant="default" className="w-full mt-2 gap-2">
                   <Phone className="h-4 w-4" />
                   Καλέστε μας
